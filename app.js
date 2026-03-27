@@ -17,11 +17,20 @@ function setActive(elements, activeEl) {
     activeEl.classList.add("active");
 }
 
+var cachedFetches = new Map();
+
+async function cachedFetch(path) {
+    if (!cachedFetches.has(path) || !cachedFetches.get(path).ok) {
+        const res = await fetch(path);
+        cachedFetches.set(path, {ok: res.ok, html: await res.text()});
+    }
+    return cachedFetches.get(path);
+}
+
 // Load external HTML
 async function loadContent(path) {
     try {
-        const res = await fetch(path);
-        const html = await res.text();
+        const {_, html} = await cachedFetch(path);
         content.innerHTML = html;
     } catch {
         content.innerHTML = "<p>Error loading content</p>";
@@ -32,8 +41,7 @@ async function loadTitle(path) {
     try {
         const today = new Date();
         const path = `pages/titles/${today.getFullYear()}/${today.getMonth().toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-title.html`
-        const res = await fetch(path);
-        const html = await res.text();
+        const {res, html} = await cachedFetch(path);
         daytitle.innerHTML = html;
     } catch {
         daytitle.innerHTML = "<p>Error loading title</p>";
@@ -48,17 +56,22 @@ function getTimeOfDay() {
     return "evening";
 }
 
+var found_holy_hour_day = new Date();
 async function loadHolyHour() {
     content.innerHTML = "";
-    let today = new Date();
+    let today;
+    today = found_holy_hour_day;
+    if (new Date() > found_holy_hour_day) {
+        today = new Date();
+    }
     let i = 0;
     while (i < 10) {
         const path = `pages/holy_hours/${today.getFullYear()}_${today.getMonth().toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-holy_hour.html`;
         try {
-            const res = await fetch(path);
-            if (res.ok) {
-                const html = await res.text();
+            const {ok, html} = await cachedFetch(path);
+            if (ok) {
                 content.innerHTML = html;
+                found_holy_hour_day = today;
                 return;
             }
         } catch {}
