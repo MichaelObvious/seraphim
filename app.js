@@ -9,7 +9,8 @@ const subtabs = document.querySelectorAll(".subtab");
 const subnav = document.getElementById("subnav");
 const content = document.getElementById("content");
 const daytitle = document.getElementById("daytitle");
-const title = document.getElementById("maintitle");
+let daytitleHTML = "";
+// const title = document.getElementById("maintitle");
 
 // --- Helpers ---
 function setActive(elements, activeEl) {
@@ -42,6 +43,7 @@ async function loadTitle(path) {
         const today = new Date();
         const path = `pages/titles/${today.getFullYear()}/${today.getMonth().toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-title.html`
         const {res, html} = await cachedFetch(path);
+        daytitleHTML = html;
         daytitle.innerHTML = html;
     } catch {
         daytitle.innerHTML = "<p>Error loading title</p>";
@@ -88,17 +90,15 @@ tabs.forEach(tab => {
         const selected = tab.dataset.tab;
 
         if (selected === "oggi") {
-            subnav.style.display = "flex";
-            daytitle.style.display = "block";
-            title.style.display = "none";
+            subnav.style.display = "flex"
+            daytitle.innerHTML = daytitleHTML;
 
             const time = getTimeOfDay();
             document.querySelector(`[data-sub="${time}"]`).click();
 
         } else if (selected === "about") {
             subnav.style.display = "none";
-            daytitle.style.display = "none";
-            title.style.display = "block";
+            daytitle.innerHTML = `<h1><i>Seraphim</i></h1>`;
 
             content.innerHTML = `
         <h2>About</h2>
@@ -109,8 +109,7 @@ tabs.forEach(tab => {
 
         } else if (selected === "settimana") {
             subnav.style.display = "none";
-            daytitle.style.display = "block";
-            title.style.display = "none";
+            daytitle.innerHTML = daytitleHTML;
 
             loadHolyHour();
         }
