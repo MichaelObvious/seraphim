@@ -72,7 +72,9 @@ async function loadHolyHour() {
         try {
             const {ok, html} = await cachedFetch(path);
             if (ok) {
-                content.innerHTML = html;
+                if content.innerHTML.length = 0 {
+                    content.innerHTML = html;
+                }
                 found_holy_hour_day = today;
                 return;
             }
