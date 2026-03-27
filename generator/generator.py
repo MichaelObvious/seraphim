@@ -69,8 +69,8 @@ curr_date = START_DATE
 while curr_date < END_DATE:
     dump_to(f"./pages/titles/{curr_date.year}/{curr_date.month:02}_{curr_date.day:02}-title.html", day_title(curr_date, START_DATE))
     dump_to(f"./pages/daytime/{curr_date.year}/{curr_date.month:02}_{curr_date.day:02}-morning.html", morning(curr_date, START_DATE))
-    dump_to(f"./pages/daytime/{curr_date.year}/{curr_date.month:02}_{curr_date.day:02}-midday.html", morning(curr_date, START_DATE))
-    dump_to(f"./pages/daytime/{curr_date.year}/{curr_date.month:02}_{curr_date.day:02}-evening.html", morning(curr_date, START_DATE))
+    dump_to(f"./pages/daytime/{curr_date.year}/{curr_date.month:02}_{curr_date.day:02}-midday.html", midday(curr_date, START_DATE))
+    dump_to(f"./pages/daytime/{curr_date.year}/{curr_date.month:02}_{curr_date.day:02}-evening.html", evening(curr_date, START_DATE))
     if cals.is_feast(curr_date):
         dump_to(f"./pages/holy_hours/{curr_date.year}_{curr_date.month:02}_{curr_date.day:02}-holy_hour.html", holy_hour(curr_date, START_DATE))
 
