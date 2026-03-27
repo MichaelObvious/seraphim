@@ -7,7 +7,7 @@ body {
 
 /* Centered layout */
 main {
-  max-width: 800px;
+  max-width: 750px;
   margin: 60px auto;
   margin-left: 7.5%;
   margin-right: 7.5%;
@@ -76,6 +76,7 @@ main.fade-out {
 /* Tabs (shared style) */
 .main-nav button,
 .sub-nav button {
+  font-family: "Garamond", "EB Garamond", serif;
   border: none;
   background: white;
   padding: 10px 18px;
