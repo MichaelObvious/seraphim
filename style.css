@@ -8,10 +8,9 @@ body {
 /* Centered layout */
 main {
   max-width: 750px;
+  width: auto;
   margin: 60px auto;
-  margin-left: 7.5%;
-  margin-right: 7.5%;
-  padding: 0 20px;
+  padding: 0 6.5%;
   line-height: 1.6;
 
   /* transition for content changes */
@@ -119,4 +118,5 @@ h1 {
 
 p {
   font-size: 18px;
+  text-align: justify;
 }
