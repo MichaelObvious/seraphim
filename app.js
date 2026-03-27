@@ -49,6 +49,7 @@ function getTimeOfDay() {
 }
 
 async function loadHolyHour() {
+    content.innerHTML = "";
     let today = new Date();
     let i = 0;
     while (i < 10) {
