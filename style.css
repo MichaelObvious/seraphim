@@ -112,9 +112,9 @@ main.fade-out {
 }
 
 /* Typography tweaks */
-h1, h2 {
+h1 {
   font-weight: normal;
-  font-size: 28px
+  font-size: 36px;
 }
 
 p {
