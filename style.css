@@ -1,7 +1,5 @@
 /* Base */
 body {
-  margin-left: 7.5%;
-  margin-right: 7.5%;
   font-family: "Garamond", "EB Garamond", serif;
   background: #f9f9f9;
   color: #222;
@@ -11,6 +9,8 @@ body {
 main {
   max-width: 800px;
   margin: 60px auto;
+  margin-left: 7.5%;
+  margin-right: 7.5%;
   padding: 0 20px;
   line-height: 1.6;
 
