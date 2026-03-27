@@ -1,6 +1,7 @@
 /* Base */
 body {
-  margin: 0;
+  margin-left: 7.5lh;
+  margin-right: 7.5lh;
   font-family: "Garamond", "EB Garamond", serif;
   background: #f9f9f9;
   color: #222;
