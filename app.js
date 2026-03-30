@@ -41,7 +41,7 @@ async function loadContent(path) {
 async function loadTitle(path) {
     try {
         const today = new Date();
-        const path = `pages/titles/${today.getFullYear()}/${today.getMonth().toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-title.html`
+        const path = `pages/titles/${today.getFullYear()}/${(today.getMonth()+1).toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-title.html`
         const {res, html} = await cachedFetch(path);
         daytitleHTML = html;
         daytitle.innerHTML = html;
@@ -68,7 +68,7 @@ async function loadHolyHour() {
     }
     let i = 0;
     while (i < 10) {
-        const path = `pages/holy_hours/${today.getFullYear()}_${today.getMonth().toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-holy_hour.html`;
+        const path = `pages/holy_hours/${today.getFullYear()}_${(today.getMonth()+1).toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-holy_hour.html`;
         try {
             const {ok, html} = await cachedFetch(path);
             if (ok) {
@@ -124,7 +124,7 @@ subtabs.forEach(sub => {
         setActive(subtabs, sub);
         const selected = sub.dataset.sub;
         const today = new Date();
-        loadContent(`pages/daytime/${today.getFullYear()}/${today.getMonth().toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-${selected}.html`);
+        loadContent(`pages/daytime/${today.getFullYear()}/${(today.getMonth()+1).toString().padStart(2, "0")}_${today.getDate().toString().padStart(2, "0")}-${selected}.html`);
     });
 });
 
